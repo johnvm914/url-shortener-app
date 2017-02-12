@@ -1,0 +1,25 @@
+<a href="/links/new">Create a Link</a>
+
+<% if @links == [] %>
+  <h1>You have no links!</h1>
+<% else %>
+  <h1>Your links</h1>
+
+  <table>
+    <tr>
+      <th>Slug</th>
+      <th>Target URL</th>
+      <th>Created At</th>
+    </tr>
+    <% @links.each do |link| %>
+      <tr>
+        <td><%= link.slug %></td>
+        <td><%= link.target_url %></td>
+        <td><%= link.created_at %></td>
+      </tr>
+      <p><a href="/links/<%= link.slug %>/edit">Edit This Link</a></p>
+      <p><a href="/links/<%= link.slug %>">See Number of Link Visits</a></p>
+      <p><%= link_to "Delete This Link", "/links/#{link.slug}", method: :delete %></p>
+    <% end %>
+  <table>
+<% end %>

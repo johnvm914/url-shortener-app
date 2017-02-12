@@ -1,0 +1,25 @@
+<% if @link.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@link.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+    <ul>
+    <% @link.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_tag "/links/#{@link.slug}", method: :patch do %>
+  <div>
+    Slug:
+    <input type="text" class="form" name="slug" value="<%= @link.slug %>">
+  </div>
+  <div>
+    Target url:
+    <input type="text" class="form" name="target_url" value="<%= @link.target_url %>"
+  </div>
+  <div>
+    <input type="submit" class="form" value="Edit Link">
+  </div>
+<% end %>
